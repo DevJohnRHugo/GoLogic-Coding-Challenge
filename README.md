@@ -1,1 +1,1 @@
-# GoLogic-Coding-Challenge
+# GoLogic-Coding-Challenge-UI
