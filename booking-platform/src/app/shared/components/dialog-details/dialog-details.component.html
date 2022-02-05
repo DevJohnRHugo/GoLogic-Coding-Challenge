@@ -1,0 +1,75 @@
+<form class="example-form d-flex flex-column" [formGroup]="bookingFormGroup">
+    <div>
+        <mat-card-title class="text-center">{{data.room.title}}</mat-card-title>
+        <div class="d-flex justify-content-around">
+            <p>Price <span><strong>${{data.room.price}}</strong></span></p>
+            <p>Room capacity: <span><strong>{{data.room.roomCapacity}}</strong></span></p>
+        </div>
+    </div>
+
+    <p class="mt-2">
+        {{data.room.description}}
+    </p>
+    <p>Location: <span><strong>{{data.room.address.city}}, {{data.room.address.postalCode}},
+                {{data.room.address.state}}, {{data.room.address.country}}</strong></span></p>
+
+    <div class="container d-flex justify-content-center">
+
+        <mat-form-field appearance="fill" class="mx-3">
+            <mat-label>Check-in — Check-out </mat-label>
+            <mat-date-range-input [rangePicker]="picker">
+                <input matStartDate placeholder="Start date" formControlName="{{'checkInDate' }}" #checkInDate>
+                <input matEndDate placeholder="End date" formControlName="{{'checkOutDate' }}" #checkOutDate>
+            </mat-date-range-input>
+            <mat-error
+                *ngIf="bookingFormGroup.get('checkInDate' )?.errors?.required && bookingFormGroup.get('checkOutDate' )?.errors?.required">
+                Please select a dates
+            </mat-error>
+
+            <mat-error
+                *ngIf="bookingFormGroup.get('checkInDate' )?.errors?.required && !bookingFormGroup.get('checkOutDate' )?.errors?.required">
+                Please select a check in date
+            </mat-error>
+
+            <mat-error
+                *ngIf="bookingFormGroup.get('checkOutDate' )?.errors?.required && !bookingFormGroup.get('checkInDate' )?.errors?.required">
+                Please select a check out date
+            </mat-error>
+
+            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-date-range-picker #picker></mat-date-range-picker>
+        </mat-form-field>
+
+        <mat-form-field class="example-full-width" appearance="fill" class="mx-3">
+            <mat-label>Number of guest</mat-label>
+            <input type="text" matInput formControlName="{{'numberOfGuest' }}" placeholder="Number of guests"
+                #numberOfGuest>
+            <mat-error
+                *ngIf="bookingFormGroup.get('numberOfGuest' )?.errors?.pattern && !bookingFormGroup.get('numberOfGuest' )?.errors?.required">
+                Please enter valid number
+            </mat-error>
+            <mat-error *ngIf="bookingFormGroup.get('numberOfGuest' )?.errors?.required">
+                Number of guest is required <strong>required</strong>
+            </mat-error>
+        </mat-form-field>
+
+        <mat-form-field class="example-full-width" appearance="fill" class="mx-3">
+            <mat-label>Email</mat-label>
+            <input type="text" matInput formControlName="{{'email' }}" placeholder="i.e. youremail@email.com" #email>
+            <mat-error
+                *ngIf="bookingFormGroup.get('email' )?.errors?.pattern && !bookingFormGroup.get('email' )?.errors?.required">
+                Please enter valid email format
+            </mat-error>
+            <mat-error *ngIf="bookingFormGroup.get('email' )?.errors?.required">
+                Email is required <strong>required</strong>
+            </mat-error>
+        </mat-form-field>
+
+    </div>
+</form>
+
+<div mat-dialog-actions class="justify-content-center">
+    <button type="button" mat-raised-button color="primary"
+        (click)="bookRoom(data.room.id, checkInDate.value, checkOutDate.value)">Book now</button>
+    <button mat-raised-button mat-dialog-close>Cancel</button>
+</div>

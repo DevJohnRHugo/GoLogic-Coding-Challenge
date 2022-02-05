@@ -1,0 +1,60 @@
+<div id="bookingContainer">
+    <nav class="navbar navbar-expand-lg navbar-nav-scroll navbar-light bg-light">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">GoLogic Coding</a>
+        </div>
+    </nav>
+
+        <mat-card #room class="example-card vh-60 vh-70" *ngFor="let room of rooms; index as i;"
+            [attr.data-room-id]="room.id">
+            <div>
+                <mat-card-title class="text-center">{{room.title}}</mat-card-title>
+                <div class="d-flex justify-content-around">
+                </div>
+            </div>
+            <div id="{{'carouselExampleIndicators' + i}}" class="carousel slide" data-bs-ride="carousel">
+                <div class="carousel-indicators">
+                    <button type="button" attr.data-bs-target="{{'#carouselExampleIndicators' + i}}" data-bs-slide-to="0"
+                        class="active" aria-current="true" aria-label="Slide 1"></button>
+                    <button type="button" attr.data-bs-target="{{'#carouselExampleIndicators' + i}}" data-bs-slide-to="1"
+                        aria-label="Slide 2"></button>
+                    <button type="button" attr.data-bs-target="{{'#carouselExampleIndicators' + i}}" data-bs-slide-to="2"
+                        aria-label="Slide 3"></button>
+                </div>
+                <div class="carousel-inner">
+                    <div class="carousel-item" [ngClass]="{'active' : r == 0 }"
+                        *ngFor="let roomImage of room.roomImages; index as r;">
+                        <img src="{{'assets/images/rooms/' + roomImage.imageName}}" class="d-block w-100" alt="...">
+                    </div>
+                </div>
+                <button class="carousel-control-prev" type="button"
+                    attr.data-bs-target="{{'#carouselExampleIndicators' + i}}" data-bs-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Previous</span>
+                </button>
+                <button class="carousel-control-next" type="button"
+                    attr.data-bs-target="{{'#carouselExampleIndicators' + i}}" data-bs-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Next</span>
+                </button>
+            </div>
+            <mat-card-content>
+
+            </mat-card-content>
+            <mat-card-actions class="d-flex flex-column">
+
+                <div class="container d-flex justify-content-center">
+
+                </div>
+                <button class="button-book" type="button" (click)="seeDetails(room.id)" mat-raised-button
+                    color="primary">More details</button>
+
+            </mat-card-actions>
+        </mat-card>
+
+    <footer class="footer mt-auto py-3 bg-light">
+        <div class="container">
+            <span class="text-muted">&copy; {{currentYear}} GoLogic</span>
+        </div>
+    </footer>
+</div>
