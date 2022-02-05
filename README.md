@@ -20,3 +20,6 @@ This is front-end stack uses **Angular version 12** framework and libraries like
 - It has a rich utlity classes that helps developers reused it instead of making it. It has also pre-built components.
 ## Trade-offs
 - Having a much more enticing UI/UX experience i.e signup/signin, admin or management process, authentication, code refactoring to see a much more better way that woud be inline with standards and best practices and automated end to end testing. Had to focus more on the backend side to deliver the logical computing.
+## Public Profile
+- [LinkedIn](http://https://www.linkedin.com/in/peter-john-r-hugo-050078101/ "LinkedIn")
+- [UI repo](https://github.com/JohnHugo1105/GoLogic-Coding-Challenge-UI)
